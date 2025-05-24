@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSec Tools | Ethical Hacking Resources</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+        
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #0a0a0a;
+            color: #00ff41;
+            overflow-x: hidden;
+        }
+        
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background: #000;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 5px #00ff41, 0 0 10px #00ff41;
+        }
+        
+        .glow-box {
+            box-shadow: 0 0 10px #00ff41, 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px #00ff41, 0 0 30px rgba(0, 255, 65, 0.5);
+        }
+        
+        .typewriter {
+            border-right: 3px solid #00ff41;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ff41; }
+        }
+        
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(0, 255, 65, 0.1);
+            animation: scan 8s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+        
+        .binary-rain {
+            position: absolute;
+            color: #00ff41;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        
+        .modal-content {
+            background-color: #0a0a0a;
+            margin: 5% auto;
+            padding: 20px;
+            border: 2px solid #00ff41;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 0 20px #00ff41;
+        }
+        
+        .close {
+            color: #00ff41;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: white;
+        }
+        
+        .breach-tool {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .breach-tool::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(0, 255, 65, 0.1),
+                rgba(0, 255, 65, 0.05),
+                transparent
+            );
+            transform: rotate(30deg);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Background Animation -->
+    <div class="matrix-bg" id="matrixCanvas"></div>
+    
+    <!-- Scan Line Animation -->
+    <div class="scan-line"></div>
+    
+    <!-- Header -->
+    <header class="border-b border-green-500">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-terminal text-3xl mr-3 glow-text"></i>
+                    <h1 class="text-2xl md:text-3xl font-bold glow-text">CYBER<span class="text-white">SEC</span>TOOLS</h1>
+                </div>
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="#tools" class="hover:text-white transition duration-300">Tools</a></li>
+                        <li><a href="#breach-tools" class="hover:text-white transition duration-300">Breach Tools</a></li>
+                        <li><a href="#resources" class="hover:text-white transition duration-300">Resources</a></li>
+                        <li><a href="#about" class="hover:text-white transition duration-300">About</a></li>
+                        <li><a href="#contact" class="hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </nav>
+                <button class="md:hidden text-2xl" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 glow-text typewriter">ETHICAL HACKING RESOURCES</h2>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Access the most powerful cybersecurity tools and learning resources for penetration testing and ethical hacking.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="#tools" class="bg-green-500 hover:bg-green-600 text-black font-bold py-3 px-6 rounded glow-box transition duration-300">
+                    <i class="fas fa-tools mr-2"></i> Explore Tools
+                </a>
+                <a href="#breach-tools" class="border border-green-500 hover:bg-green-900 hover:bg-opacity-30 font-bold py-3 px-6 rounded transition duration-300">
+                    <i class="fas fa-database mr-2"></i> Breach Tools
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="py-12 bg-black bg-opacity-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6 border border-green-500 rounded glow-box">
+                    <div class="text-4xl font-bold mb-2 glow-text">150+</div>
+                    <div class="text-sm uppercase">Tools Available</div>
+                </div>
+                <div class="p-6 border border-green-500 rounded glow-box">
+                    <div class="text-4xl font-bold mb-2 glow-text">24/7</div>
+                    <div class="text-sm uppercase">Support</div>
+                </div>
+                <div class="p-6 border border-green-500 rounded glow-box">
+                    <div class="text-4xl font-bold mb-2 glow-text">10K+</div>
+                    <div class="text-sm uppercase">Community Members</div>
+                </div>
+                <div class="p-6 border border-green-500 rounded glow-box">
+                    <div class="text-4xl font-bold mb-2 glow-text">100%</div>
+                    <div class="text-sm uppercase">Open Source</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tools Section -->
+    <section id="tools" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center glow-text">
+                <i class="fas fa-tools mr-3"></i> HACKING TOOLKIT
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tool Card 1 -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 tool-card" onclick="openModal('networkScannerModal')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-network-wired text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Network Scanner</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Advanced network scanning tool to discover hosts, open ports, and services running on your network.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">CLI Tool</span>
+                        <div class="text-green-500">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 2 -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 tool-card" onclick="openModal('passwordCrackerModal')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-lock text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Password Cracker</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Powerful password recovery tool supporting multiple attack vectors including brute force and dictionary.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">GUI/CLI</span>
+                        <div class="text-green-500">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 3 -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 tool-card" onclick="openModal('vulnerabilityScannerModal')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-bug text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Vulnerability Scanner</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Automated scanner that identifies security weaknesses in systems and applications.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Web App</span>
+                        <div class="text-green-500">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 4 -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 tool-card" onclick="openModal('wifiAnalyzerModal')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-wifi text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">WiFi Analyzer</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Comprehensive wireless network analysis tool for security assessments and troubleshooting.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Mobile App</span>
+                        <div class="text-green-500">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 5 -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 tool-card" onclick="openModal('exploitFrameworkModal')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-code text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Exploit Framework</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Advanced framework for developing, testing, and executing exploit code against targets.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Framework</span>
+                        <div class="text-green-500">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tool Card 6 -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 tool-card" onclick="openModal('forensicsToolkitModal')">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Forensics Toolkit</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Complete set of tools for digital forensics and incident response investigations.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Suite</span>
+                        <div class="text-green-500">
+                            <i class="fas fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Breach Tools Section -->
+    <section id="breach-tools" class="py-20 bg-black bg-opacity-30">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center glow-text">
+                <i class="fas fa-database mr-3"></i> BREACH TOOLS
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Intelx.io -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 breach-tool">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-search text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Intelx.io</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Advanced intelligence platform for searching leaked data and breach databases with powerful query capabilities.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Premium</span>
+                        <a href="https://intelx.io" target="_blank" class="text-green-500 hover:text-white">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Snusbase -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 breach-tool">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-user-secret text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Snusbase</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Database search engine that allows you to find leaked credentials and compromised accounts.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Premium</span>
+                        <a href="https://snusbase.com" target="_blank" class="text-green-500 hover:text-white">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Leakcheck -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 breach-tool">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Leakcheck</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Check if your credentials have been exposed in data breaches with comprehensive coverage.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Freemium</span>
+                        <a href="https://leakcheck.io" target="_blank" class="text-green-500 hover:text-white">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- HACKCHECK -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 breach-tool">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-lock text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">HACKCHECK</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Professional breach data search engine with real-time monitoring and alerts.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Premium</span>
+                        <a href="https://hackcheck.io" target="_blank" class="text-green-500 hover:text-white">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- BREACHBASE -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 breach-tool">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-server text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">BREACHBASE</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Massive database of breached credentials with advanced search capabilities.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Enterprise</span>
+                        <a href="https://breachbase.com" target="_blank" class="text-green-500 hover:text-white">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- seon -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 breach-tool">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-fingerprint text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">SEON</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Fraud prevention platform with breach data integration for enhanced security.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Enterprise</span>
+                        <a href="https://seon.io" target="_blank" class="text-green-500 hover:text-white">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- intelvault -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 breach-tool">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-archive text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">IntelVault</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Comprehensive breach data archive with historical records and advanced analytics.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Premium</span>
+                        <a href="https://intelvault.io" target="_blank" class="text-green-500 hover:text-white">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- OATHNET.RU -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 breach-tool">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-globe-europe text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">OATHNET.RU</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Russian-based breach data search engine with extensive coverage of Eastern European breaches.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Premium</span>
+                        <a href="https://oathnet.ru" target="_blank" class="text-green-500 hover:text-white">
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Breach Monitoring -->
+                <div class="bg-black bg-opacity-50 border border-green-500 rounded-lg p-6 transition duration-500 breach-tool">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-900 bg-opacity-50 p-3 rounded-full mr-4">
+                            <i class="fas fa-bell text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Breach Monitoring</h3>
+                    </div>
+                    <p class="mb-4 text-gray-300">Get real-time alerts when your credentials appear in new breaches across all major databases.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm bg-green-900 bg-opacity-30 px-3 py-1 rounded">Service</span>
+                        <a href="#contact" class="text-green-500 hover:text-white">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 p-6 border border-green-500 rounded-lg bg-black bg-opacity-30">
+                <h3 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-exclamation-triangle mr-3 text-yellow-500"></i> Important Legal Notice
+                </h3>
+                <p class="text-gray-300 mb-4">
+                    All breach tools listed should only be used for legitimate security research, penetration testing with proper authorization, or checking your own credentials. Unauthorized access to systems or data is illegal.
+                </p>
+                <p class="text-gray-300">
+                    Many of these services require you to agree to their terms of service and may have restrictions on how you can use their data. Always comply with applicable laws and regulations.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Resources Section -->
+    <section id="resources" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center glow-text">
+                <i class="fas fa-graduation-cap mr-3"></i> LEARNING RESOURCES
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="border border-green-500 rounded-lg p-8 glow-box">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-book-open mr-3"></i> Tutorials & Guides
+                    </h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-terminal text-green-500 mr-3"></i>
+                            <a href="#" class="hover:text-white transition duration-300">Beginner's Guide to Ethical Hacking</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-terminal text-green-500 mr-3"></i>
+                            <a href="#" class="hover:text-white transition duration-300">Network Penetration Testing Step-by-Step</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-terminal text-green-500 mr-3"></i>
+                            <a href="#" class="hover:text-white transition duration-300">Web Application Security Fundamentals</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-terminal text-green-500 mr-3"></i>
+                            <a href="#" class="hover:text-white transition duration-300">Advanced Exploit Development</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-terminal text-green-500 mr-3"></i>
+                            <a href="#" class="hover:text-white transition duration-300">Digital Forensics & Incident Response</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="border border-green-500 rounded-lg p-8 glow-box">
+                    <h3 class="text-2xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-video mr-3"></i> Video Courses
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Penetration Testing Basics</span>
+                                <span>85% Free</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Network Security</span>
+                                <span>60% Free</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Malware Analysis</span>
+                                <span>45% Free</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Cryptography</span>
+                                <span>75% Free</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 glow-text">
+                        <i class="fas fa-user-secret mr-3"></i> ABOUT US
+                    </h2>
+                    <p class="mb-6 text-gray-300 leading-relaxed">
+                        CyberSecTools is a platform dedicated to providing ethical hackers and cybersecurity professionals with the most powerful open-source tools and comprehensive learning resources. Our mission is to make cybersecurity knowledge accessible to everyone.
+                    </p>
+                    <p class="mb-6 text-gray-300 leading-relaxed">
+                        Founded in 2015 by a group of security researchers, we've grown into a community of over 10,000 members worldwide. All our tools are open-source and vetted by security experts.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>100% Legal and Ethical Tools</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Regularly Updated Security Content</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-3"></i>
+                            <span>Active Community Support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="border-2 border-green-500 rounded-lg p-1 glow-box">
+                        <div class="bg-black p-4 rounded">
+                            <div class="flex items-center mb-3">
+                                <div class="flex space-x-2 mr-4">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                </div>
+                                <div class="text-sm">about_us.txt</div>
+                            </div>
+                            <div class="font-mono text-sm overflow-auto h-64">
+                                <p class="text-green-500">$ whoami</p>
+                                <p class="mb-3">CyberSecTools - Ethical Hacking Resources</p>
+                                
+                                <p class="text-green-500">$ date</p>
+                                <p class="mb-3">2023 - Serving the cybersecurity community since 2015</p>
+                                
+                                <p class="text-green-500">$ mission</p>
+                                <p class="mb-3">To democratize cybersecurity knowledge and tools</p>
+                                
+                                <p class="text-green-500">$ values</p>
+                                <p class="mb-1">- Ethical practice</p>
+                                <p class="mb-1">- Open source philosophy</p>
+                                <p class="mb-1">- Community driven</p>
+                                <p class="mb-3">- Continuous learning</p>
+                                
+                                <p class="text-green-500">$ team</p>
+                                <p class="mb-1">- Security Researchers</p>
+                                <p class="mb-1">- Penetration Testers</p>
+                                <p class="mb-1">- Developers</p>
+                                <p class="mb-3">- Cybersecurity Educators</p>
+                                
+                                <p class="text-green-500">$ contact</p>
+                                <p class="mb-3">gdrgwgrdwg@gmail.com</p>
+                                
+                                <p class="text-green-500">$ _</p>
+                                <p class="animate-pulse">|</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center glow-text">
+                <i class="fas fa-envelope mr-3"></i> CONTACT US
+            </h2>
+            
+            <div class="max-w-3xl mx-auto border border-green-500 rounded-lg p-8 glow-box">
+                <form id="contactForm" action="https://formspree.io/f/gdrgwgrdwg@gmail.com" method="POST">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="name" class="block mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full bg-black bg-opacity-50 border border-green-500 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full bg-black bg-opacity-50 border border-green-500 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="subject" class="block mb-2">Subject</label>
+                        <input type="text" id="subject" name="subject" class="w-full bg-black bg-opacity-50 border border-green-500 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="message" class="block mb-2">Message</label>
+                        <textarea id="message" name="message" rows="5" class="w-full bg-black bg-opacity-50 border border-green-500 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+                    </div>
+                    <div class="flex items-center">
+                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-black font-bold py-3 px-8 rounded glow-box transition duration-300 flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i> Send Message
+                        </button>
+                        <div class="ml-6 text-sm">
+                            <p>Or email us directly:</p>
+                            <a href="mailto:gdrgwgrdwg@gmail.com" class="text-green-500 hover:text-white">gdrgwgrdwg@gmail.com</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="border-t border-green-500 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center">
+                        <i class="fas fa-terminal mr-2"></i> CYBER<span class="text-white">SEC</span>TOOLS
+                    </h3>
+                    <p class="text-gray-400">The ultimate resource for ethical hackers and cybersecurity professionals.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#tools" class="text-gray-400 hover:text-white transition duration-300">Tools</a></li>
+                        <li><a href="#breach-tools" class="text-gray-400 hover:text-white transition duration-300">Breach Tools</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Ethical Guidelines</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Responsible Disclosure</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Connect</h4>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-github"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white text-xl"><i class="fab fa-telegram"></i></a>
+                    </div>
+                    <p class="text-gray-400 text-sm">Join our community of security researchers and ethical hackers.</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
+                <p>&copy; 2023 CyberSecTools. All rights reserved. | Designed with <i class="fas fa-heart text-red-500"></i> for the cybersecurity community</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modals for each tool -->
+    <!-- Network Scanner Modal -->
+    <div id="networkScannerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('networkScannerModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 glow-text"><i class="fas fa-network-wired mr-2"></i> Network Scanner Guide</h2>
+            <div class="font-mono text-sm">
+                <p class="text-green-500">$ nmap --help</p>
+                <p class="mb-3">Nmap is the most powerful network scanner available.</p>
+                
+                <p class="text-green-500">$ Basic Scan</p>
+                <p class="mb-1">nmap -sS -sV [target]</p>
+                <p class="mb-3">This performs a SYN scan (-sS) and service version detection (-sV)</p>
+                
+                <p class="text-green-500">$ Advanced Scan</p>
+                <p class="mb-1">nmap -A -T4 [target]</p>
+                <p class="mb-3">Aggressive scan (-A) with timing template 4 (fast)</p>
+                
+                <p class="text-green-500">$ Port Range</p>
+                <p class="mb-1">nmap -p 1-1000 [target]</p>
+                <p class="mb-3">Scans ports 1 through 1000</p>
+                
+                <p class="text-green-500">$ OS Detection</p>
+                <p class="mb-1">nmap -O [target]</p>
+                <p class="mb-3">Attempts to identify the operating system</p>
+                
+                <p class="text-green-500">$ Script Scanning</p>
+                <p class="mb-1">nmap --script=[script-name] [target]</p>
+                <p class="mb-3">Runs NSE (Nmap Scripting Engine) scripts</p>
+                
+                <p class="text-green-500">$ Output to File</p>
+                <p class="mb-1">nmap -oN output.txt [target]</p>
+                <p class="mb-3">Saves results to output.txt</p>
+                
+                <p class="text-green-500">$ Legal Note</p>
+                <p class="mb-3">Only scan networks you own or have permission to scan.</p>
+                
+                <p class="text-green-500">$ Need Help?</p>
+                <p>Contact: <a href="mailto:gdrgwgrdwg@gmail.com" class="text-green-500 hover:text-white">gdrgwgrdwg@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Password Cracker Modal -->
+    <div id="passwordCrackerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('passwordCrackerModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 glow-text"><i class="fas fa-lock mr-2"></i> Password Cracker Guide</h2>
+            <div class="font-mono text-sm">
+                <p class="text-green-500">$ john --help</p>
+                <p class="mb-3">John the Ripper is a powerful password cracking tool.</p>
+                
+                <p class="text-green-500">$ Basic Dictionary Attack</p>
+                <p class="mb-1">john --wordlist=[wordlist.txt] [hashes.txt]</p>
+                <p class="mb-3">Uses a wordlist to crack passwords</p>
+                
+                <p class="text-green-500">$ Brute Force Attack</p>
+                <p class="mb-1">john --incremental [hashes.txt]</p>
+                <p class="mb-3">Tries all possible character combinations</p>
+                
+                <p class="text-green-500">$ Rule-Based Attack</p>
+                <p class="mb-1">john --rules --wordlist=[wordlist.txt] [hashes.txt]</p>
+                <p class="mb-3">Applies transformation rules to wordlist</p>
+                
+                <p class="text-green-500">$ Show Cracked Passwords</p>
+                <p class="mb-1">john --show [hashes.txt]</p>
+                <p class="mb-3">Displays already cracked passwords</p>
+                
+                <p class="text-green-500">$ Hashcat Example</p>
+                <p class="mb-1">hashcat -m 0 -a 0 [hashes.txt] [wordlist.txt]</p>
+                <p class="mb-3">Uses hashcat for GPU-accelerated cracking</p>
+                
+                <p class="text-green-500">$ Legal Note</p>
+                <p class="mb-3">Only crack passwords you own or have permission to test.</p>
+                
+                <p class="text-green-500">$ Need Help?</p>
+                <p>Contact: <a href="mailto:gdrgwgrdwg@gmail.com" class="text-green-500 hover:text-white">gdrgwgrdwg@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Vulnerability Scanner Modal -->
+    <div id="vulnerabilityScannerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('vulnerabilityScannerModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 glow-text"><i class="fas fa-bug mr-2"></i> Vulnerability Scanner Guide</h2>
+            <div class="font-mono text-sm">
+                <p class="text-green-500">$ nikto --help</p>
+                <p class="mb-3">Nikto is a web server vulnerability scanner.</p>
+                
+                <p class="text-green-500">$ Basic Scan</p>
+                <p class="mb-1">nikto -h [target]</p>
+                <p class="mb-3">Scans a target web server for common vulnerabilities</p>
+                
+                <p class="text-green-500">$ Scan Specific Port</p>
+                <p class="mb-1">nikto -h [target] -p [port]</p>
+                <p class="mb-3">Scans a specific port on the target</p>
+                
+                <p class="text-green-500">$ Scan with SSL</p>
+                <p class="mb-1">nikto -h [target] -ssl</p>
+                <p class="mb-3">Scans an SSL-enabled web server</p>
+                
+                <p class="text-green-500">$ Nessus Basics</p>
+                <p class="mb-1">1. Create new scan policy</p>
+                <p class="mb-1">2. Configure target IP range</p>
+                <p class="mb-1">3. Run scan and review results</p>
+                <p class="mb-3">4. Export report for analysis</p>
+                
+                <p class="text-green-500">$ OpenVAS Setup</p>
+                <p class="mb-1">1. sudo openvas-setup</p>
+                <p class="mb-1">2. Access web interface at https://127.0.0.1:9392</p>
+                <p class="mb-3">3. Create new task and run scan</p>
+                
+                <p class="text-green-500">$ Legal Note</p>
+                <p class="mb-3">Only scan systems you own or have permission to test.</p>
+                
+                <p class="text-green-500">$ Need Help?</p>
+                <p>Contact: <a href="mailto:gdrgwgrdwg@gmail.com" class="text-green-500 hover:text-white">gdrgwgrdwg@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- WiFi Analyzer Modal -->
+    <div id="wifiAnalyzerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('wifiAnalyzerModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 glow-text"><i class="fas fa-wifi mr-2"></i> WiFi Analyzer Guide</h2>
+            <div class="font-mono text-sm">
+                <p class="text-green-500">$ airodump-ng --help</p>
+                <p class="mb-3">Airodump-ng is part of the aircrack-ng suite for WiFi analysis.</p>
+                
+                <p class="text-green-500">$ Monitor Mode</p>
+                <p class="mb-1">airmon-ng start [interface]</p>
+                <p class="mb-3">Puts your wireless card in monitor mode</p>
+                
+                <p class="text-green-500">$ Capture Traffic</p>
+                <p class="mb-1">airodump-ng [interface]</p>
+                <p class="mb-3">Shows all nearby wireless networks and clients</p>
+                
+                <p class="text-green-500">$ Targeted Capture</p>
+                <p class="mb-1">airodump-ng -c [channel] --bssid [MAC] -w [file] [interface]</p>
+                <p class="mb-3">Captures packets from a specific network</p>
+                
+                <p class="text-green-500">$ Wireshark for WiFi</p>
+                <p class="mb-1">1. Capture in monitor mode</p>
+                <p class="mb-1">2. Use display filter "wlan"</p>
+                <p class="mb-3">3. Analyze 802.11 frames and management packets</p>
+                
+                <p class="text-green-500">$ Kismet Setup</p>
+                <p class="mb-1">1. sudo kismet</p>
+                <p class="mb-1">2. Configure source in web UI</p>
+                <p class="mb-3">3. View networks and clients in real-time</p>
+                
+                <p class="text-green-500">$ Legal Note</p>
+                <p class="mb-3">Only analyze networks you own or have permission to monitor.</p>
+                
+                <p class="text-green-500">$ Need Help?</p>
+                <p>Contact: <a href="mailto:gdrgwgrdwg@gmail.com" class="text-green-500 hover:text-white">gdrgwgrdwg@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Exploit Framework Modal -->
+    <div id="exploitFrameworkModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('exploitFrameworkModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 glow-text"><i class="fas fa-code mr-2"></i> Exploit Framework Guide</h2>
+            <div class="font-mono text-sm">
+                <p class="text-green-500">$ msfconsole</p>
+                <p class="mb-3">Metasploit Framework is the most popular exploit development platform.</p>
+                
+                <p class="text-green-500">$ Search for Exploits</p>
+                <p class="mb-1">search [keyword]</p>
+                <p class="mb-3">Searches available modules by keyword</p>
+                
+                <p class="text-green-500">$ Use an Exploit</p>
+                <p class="mb-1">use exploit/[path]</p>
+                <p class="mb-1">set RHOSTS [target]</p>
+                <p class="mb-1">set PAYLOAD [payload]</p>
+                <p class="mb-3">exploit</p>
+                
+                <p class="text-green-500">$ Meterpreter Basics</p>
+                <p class="mb-1">sysinfo - System information</p>
+                <p class="mb-1">shell - Get command shell</p>
+                <p class="mb-1">download/upload - File transfer</p>
+                <p class="mb-3">screenshot - Capture screen</p>
+                
+                <p class="text-green-500">$ Creating Payloads</p>
+                <p class="mb-1">msfvenom -p [payload] LHOST=[your_ip] LPORT=[port] -f [format] > output</p>
+                <p class="mb-3">Generates custom payloads for various platforms</p>
+                
+                <p class="text-green-500">$ Post Exploitation</p>
+                <p class="mb-1">run post/[module] - Run post modules</p>
+                <p class="mb-1">hashdump - Dump password hashes</p>
+                <p class="mb-3">persistence - Maintain access</p>
+                
+                <p class="text-green-500">$ Legal Note</p>
+                <p class="mb-3">Only use against systems you own or have permission to test.</p>
+                
+                <p class="text-green-500">$ Need Help?</p>
+                <p>Contact: <a href="mailto:gdrgwgrdwg@gmail.com" class="text-green-500 hover:text-white">gdrgwgrdwg@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Forensics Toolkit Modal -->
+    <div id="forensicsToolkitModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('forensicsToolkitModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4 glow-text"><i class="fas fa-shield-alt mr-2"></i> Forensics Toolkit Guide</h2>
+            <div class="font-mono text-sm">
+                <p class="text-green-500">$ autopsy</p>
+                <p class="mb-3">Autopsy is a graphical interface for The Sleuth Kit.</p>
+                
+                <p class="text-green-500">$ Creating Disk Image</p>
+                <p class="mb-1">dcfldd if=/dev/sdX of=image.dd bs=4096</p>
+                <p class="mb-3">Creates forensic image of a disk</p>
+                
+                <p class="text-green-500">$ Analyzing Image</p>
+                <p class="mb-1">1. Open autopsy</p>
+                <p class="mb-1">2. Create new case</p>
+                <p class="mb-1">3. Add image file</p>
+                <p class="mb-3">4. Analyze file system and artifacts</p>
+                
+                <p class="text-green-500">$ Volatility Basics</p>
+                <p class="mb-1">volatility -f [memory.dmp] imageinfo</p>
+                <p class="mb-1">volatility -f [memory.dmp] --profile=[profile] pslist</p>
+                <p class="mb-3">volatility -f [memory.dmp] --profile=[profile] dumpfiles</p>
+                
+                <p class="text-green-500">$ Wireshark for Network Forensics</p>
+                <p class="mb-1">1. Open pcap file</p>
+                <p class="mb-1">2. Use display filters</p>
+                <p class="mb-1">3. Follow TCP streams</p>
+                <p class="mb-3">4. Export objects</p>
+                
+                <p class="text-green-500">$ Bulk Extractor</p>
+                <p class="mb-1">bulk_extractor -o output/ image.dd</p>
+                <p class="mb-3">Extracts email addresses, credit cards, and other data</p>
+                
+                <p class="text-green-500">$ Legal Note</p>
+                <p class="mb-3">Only perform forensics on systems you own or have legal authority.</p>
+                
+                <p class="text-green-500">$ Need Help?</p>
+                <p>Contact: <a href="mailto:gdrgwgrdwg@gmail.com" class="text-green-500 hover:text-white">gdrgwgrdwg@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script>
+        // Matrix background effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.createElement('canvas');
+            canvas.id = 'matrixCanvas';
+            document.querySelector('.matrix-bg').appendChild(canvas);
+            
+            const c = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const binary = '01';
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            
+            for(let i = 0; i < columns; i++) {
+                drops[i] = Math.random() * canvas.height;
+            }
+            
+            function draw() {
+                c.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                c.fillRect(0, 0, canvas.width, canvas.height);
+                
+                c.fillStyle = '#00FF41';
+                c.font = fontSize + 'px monospace';
+                
+                for(let i = 0; i < drops.length; i++) {
+                    const text = binary.charAt(Math.floor(Math.random() * binary.length));
+                    c.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(draw, 33);
+            
+            // Binary rain animation
+            function createBinaryRain() {
+                const binaryChar = document.createElement('div');
+                binaryChar.className = 'binary-rain';
+                binaryChar.textContent = Math.random() > 0.5 ? '0' : '1';
+                binaryChar.style.left = Math.random() * window.innerWidth + 'px';
+                binaryChar.style.fontSize = (Math.random() * 10 + 10) + 'px';
+                binaryChar.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                document.body.appendChild(binaryChar);
+                
+                setTimeout(() => {
+                    binaryChar.remove();
+                }, parseFloat(binaryChar.style.animationDuration) * 1000);
+            }
+            
+            setInterval(createBinaryRain, 100);
+            
+            // Responsive menu toggle
+            const menuBtn = document.getElementById('menuBtn');
+            menuBtn.addEventListener('click', function() {
+                const nav = document.querySelector('nav');
+                nav.classList.toggle('hidden');
+                nav.classList.toggle('block');
+                nav.classList.toggle('absolute');
+                nav.classList.toggle('top-16');
+                nav.classList.toggle('right-4');
+                nav.classList.toggle('bg-black');
+                nav.classList.toggle('p-4');
+                nav.classList.toggle('rounded');
+                nav.classList.toggle('border');
+                nav.classList.toggle('border-green-500');
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Contact form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(this);
+                
+                // Send form data using Fetch API
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Message sent successfully! We will contact you soon.');
+                        this.reset();
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    alert('There was a problem sending your message. Please try again or email us directly at gdrgwgrdwg@gmail.com');
+                    console.error('Error:', error);
+                });
+            });
+        });
+        
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
